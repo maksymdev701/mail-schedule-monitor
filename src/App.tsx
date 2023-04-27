@@ -6,14 +6,21 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import ThreadPage from "./components/threads-page";
+import ThreadDashboard from "./components/threads/threads-dashboard";
+import MainLayout from "./components/main-layout";
+import PromptAddForm from "./components/prompts/prompt-add-form";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/threads" />} />
-        <Route path="/threads" element={<ThreadPage />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route path="" element={<Navigate to="/threads" />} />
+          <Route path="threads" element={<ThreadDashboard />} />
+          <Route path="prompts">
+            <Route path="add" element={<PromptAddForm />} />
+          </Route>
+        </Route>
       </Routes>
     </Router>
   );
